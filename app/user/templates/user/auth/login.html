@@ -1,0 +1,94 @@
+{% include "global/partials/head.html" %}
+{% load static %}
+<body>
+  <div class="container-form">
+    <h3 id='titulo'>LOGIN</h3>
+    <div class="formulario">
+      <form action="" method="post">{% csrf_token %}
+        <div class="form-floating mb-3">
+          <input type="name" class="form-control" id="floatingInput" placeholder="Username" name="username">
+          <label for="floatingInput">Usuário</label>
+        </div>
+        <div class="form-floating mb-5">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"  name="password">
+          <label for="floatingPassword">Senha</label>
+        </div>
+        <div class="text-center">
+          <input type="submit" value="Entrar" class="btn btn-success btn-lg">
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="credenciais-container">
+    <div class="cred-titulo">
+      <h5><img src="{% static "global/media/key-set.png" %}" alt="">Credenciais</h5>
+    </div>
+    <div class="conta1">
+      <p><strong>-----CONTA 1-----</strong></p>
+      <p>Usuário: testador</p>
+      <p>Senha: teste321</p>
+    </div>
+    
+    <div class="conta2">
+      <p><strong>-----CONTA 2-----</strong></p>
+      <p>Usuário: Test-User</p>
+      <p>Senha: teste123</p>
+    </div>
+  </div>
+  <style>
+    .container-form{
+      display: flex;
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center;
+      background:#023E7D;
+      width: 800px;
+      height: 470px;
+      border-radius:30px;
+      
+    } 
+    .formulario{
+      width:630px ;
+
+    }
+    #titulo{
+      text-align: center;
+      color:#fff;
+      margin-bottom:50px;
+      font-weight:800;
+    }
+    body {
+      font-family: "JetBrains Mono", serif;
+      display: flex;
+      justify-content: center; /*  horizontalmente */
+      align-items: center; /* verticalmente */
+      min-height: 100vh; 
+      margin: 0; 
+      background:#c1c1c1;
+    }
+    .btn-success{
+      background:#38B000
+    }
+    .btn{
+      width:265px;
+      font-weight:800;
+
+    }
+    .credenciais-container{
+      padding-top:10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; 
+      align-items: center;
+      margin:0 40px;
+      background:#0466C8;
+      width: 200px;
+      height: 280px;
+      border-radius: 5px;
+      color:#fff
+    }
+    img{
+      width: 30px;
+    }
+  </style>
+</body>

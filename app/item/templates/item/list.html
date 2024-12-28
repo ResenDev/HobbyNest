@@ -1,0 +1,72 @@
+{% load crispy_forms_tags %}
+{% include "global/partials/head.html" %}
+<body>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <!--Sidebar inicio-->
+
+        <!--Sidebar final-->
+        <!--Barra de pesquisa inicio-->
+        <div class="container-header">
+            <h1 class="h2 text-center">Minha Coleção</h1>
+            <div class="search-container w-25">
+                <form class="d-flex  " role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+            <!--Barra de pesquisa final-->
+            <!--Add item inicio-->    
+            <a href="{% url "cadastro_cliente" %}">
+                <button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Adicionar item</button>
+            </a>
+        </div>
+        <!--Add item final-->    
+        <canvas class="my-4 w-100" id="myChart" width="900" height="20"></canvas>
+        <!--Tabela inicio-->
+        {% if cliente_list %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Adquirido em</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for cliente in cliente_list %}
+                    <tr>
+                        <th scope="row">{{   }}</th>
+                        <td>{{   }}</td>
+                        <td>{{   }}</td>
+                        <td>{{   }}</td>
+                        <td>{{   }}</td>
+                        <td>{{  }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{% url '' pk=item.pk %}">
+                                <i class="bi bi-pencil-fill" ></i> Editar</button>
+                            </a>
+                            <a class="btn btn-danger" href="{% url ' ' pk=item.pk %}">
+                                <i class="bi bi-trash-fill"></i> Deletar</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p>Não existem itens cadastrados!</p>
+        {% endif %}
+        
+    <!--Tabela final-->
+    
+</main>
+
+</body>
+</html>
