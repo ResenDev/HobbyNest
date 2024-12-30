@@ -1,8 +1,8 @@
 import os
 import sys
 from pathlib import Path
-from decouple import config, Csv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from decouple import config, Csv
 BASE_DIR = Path(__file__).resolve().parent.parent
 # adicionando a pasta app ao PYTHONPATH
 sys.path.append(os.path.join(BASE_DIR, 'app'))
@@ -25,8 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app.item',
     'app.user',
+    'app.item',
     "crispy_forms",
     "crispy_bootstrap5",
 ]

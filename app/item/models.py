@@ -1,4 +1,3 @@
-from datetime import datetime
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.conf import settings
@@ -40,7 +39,7 @@ class Item(models.Model):
     ano_aquisicao = models.IntegerField(
         validators=[
             MinValueValidator(1950),  # ano mínimo
-            MaxValueValidator(datetime.now().year)  # ano atual é o limite
+            MaxValueValidator(timezone.now().year)  # ano atual é o limite
         ],
         blank=False,
         help_text="Informe o ano da aquisição do item (ex.: 2018)"

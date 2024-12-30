@@ -1,17 +1,75 @@
-{% extends "global/base_form.html"%}
+{% include "global/partials/head.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block tipo %}Cadastro de Usuário{% endblock tipo %}
-{% block campos %}
-        {{form.first_name|as_crispy_field}} 
-        {{form.last_name|as_crispy_field}} 
-        {{form.username|as_crispy_field}} 
-        {{form.email|as_crispy_field}} 
-        {{form.password1|as_crispy_field}} 
-        {{form.password2|as_crispy_field}} 
-{% endblock campos %}
-{% block value %}value="Cadastrar"{% endblock value %}
+<body>
+  <div class="container-form">
+    <h3 id='titulo'>CADASTRO</h3>
+    <div class="formulario">
+      <form action="{% url 'user:cadastro' %}" method="post">{% csrf_token %}
+        <div class="form-floating mb-5">
+              <input type="name" class="form-control" id="floatingInput" placeholder="Nome" name="first_name">
+              <label for="floatingInput">Primeiro nome</label>
+        </div>
+        <div class="form-floating mb-5">
+                <input type="name" class="form-control" id="floatingInput" placeholder="Sobrenome" name="last_name">
+                <label for="floatingInput">Sobrenome</label>
+        </div>        
+        <div class="form-floating mb-5"> 
+                <input type="name" class="form-control" id="floatingInput" placeholder="E-mail" name="email">
+                <label for="floatingInput">E-mail</label>
+        </div>
+        <div class="form-floating mb-5"> 
+                <input type="name" class="form-control" id="floatingInput" placeholder="Username" name="username">
+                <label for="floatingInput">Usuário</label>
+        </div>
+      <div class="form-floating mb-5">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"  name="password">
+        <label for="floatingPassword">Senha</label>
+      </div>
+      <div class="text-center">
+        <input type="submit" value="Cadsatrar" class="btn btn-success btn-lg">
+      </div>
+      </form>
+    </div>
+  </div>
+  <style>
+    .container-form{
+      display: flex;
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center;
+      background:#023E7D;
+      width: 800px;
+      height: 690px;
+      border-radius:30px;
+      
+    } 
+    .formulario{
+      width:630px ;
 
+    }
+    #titulo{
+      text-align: center;
+      color:#fff;
+      margin-bottom:50px;
+      font-weight:800;
+    }
+    body {
+      font-family: "JetBrains Mono", serif;
+      display: flex;
+      justify-content: center; /*  horizontalmente */
+      align-items: center; /* verticalmente */
+      min-height: 100vh; 
+      margin: 0; 
+      background:#c1c1c1;
+    }
+    .btn-success{
+      background:#38B000
+    }
+    .btn{
+      width:265px;
+      font-weight:800;
 
-
-<!--{{form.campo|as_crispy_field}}-->
+    }
+  </style>
+</body>

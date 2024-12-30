@@ -3,9 +3,6 @@
 <body>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-        <!--Sidebar inicio-->
-
-        <!--Sidebar final-->
         <!--Barra de pesquisa inicio-->
         <div class="container-header">
             <h1 class="h2 text-center">Minha Coleção</h1>
@@ -16,24 +13,25 @@
                 </form>
             </div>
             <!--Barra de pesquisa final-->
+
             <!--Add item inicio-->    
-            <a href="{% url "cadastro_cliente" %}">
+            <a href="{% url "item:cadastrar" %}">
                 <button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Adicionar item</button>
             </a>
         </div>
         <!--Add item final-->    
         <canvas class="my-4 w-100" id="myChart" width="900" height="20"></canvas>
         <!--Tabela inicio-->
-        {% if cliente_list %}
+        {% if itens %}
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Descrição</th>
                         <th scope="col">Adquirido em</th>
                         <th scope="col">Opções</th>
                     </tr>
@@ -41,17 +39,17 @@
                 <tbody class="table-group-divider">
                     {% for cliente in cliente_list %}
                     <tr>
-                        <th scope="row">{{   }}</th>
-                        <td>{{   }}</td>
-                        <td>{{   }}</td>
-                        <td>{{   }}</td>
-                        <td>{{   }}</td>
-                        <td>{{  }}</td>
+                        <th scope="row">{{item.pk}}</th>
+                        <td>{{  item.titulo  }}</td>
+                        <td>{{ item.categoria  }}</td>
+                        <td>{{ item.marca  }}</td>
+                        <td>{{ item.descricao_item  }}</td>
+                        <td>{{ item.ano_aquisicao }}</td>
                         <td>
-                            <a class="btn btn-warning" href="{% url '' pk=item.pk %}">
+                            <a class="btn btn-warning" href="{% url 'item:atualizar' pk=item.pk %}">
                                 <i class="bi bi-pencil-fill" ></i> Editar</button>
                             </a>
-                            <a class="btn btn-danger" href="{% url ' ' pk=item.pk %}">
+                            <a class="btn btn-danger" href="{% url 'item:deletar ' pk=item.pk %}">
                                 <i class="bi bi-trash-fill"></i> Deletar</button>
                             </a>
                         </td>
@@ -61,7 +59,7 @@
             </table>
         </div>
         {% else %}
-            <p>Não existem itens cadastrados!</p>
+            <p>Você não tem itens cadastrados!</p>
         {% endif %}
         
     <!--Tabela final-->
