@@ -15,7 +15,7 @@
             <!--Barra de pesquisa final-->
 
             <!--Add item inicio-->    
-            <a href="{% url "item:cadastrar" %}">
+            <a href="{% url 'item:cadastrar_item' %}">
                 <button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Adicionar item</button>
             </a>
         </div>
@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    {% for cliente in cliente_list %}
+                    {% for item in itens %}
                     <tr>
                         <th scope="row">{{item.pk}}</th>
                         <td>{{  item.titulo  }}</td>
@@ -46,10 +46,10 @@
                         <td>{{ item.descricao_item  }}</td>
                         <td>{{ item.ano_aquisicao }}</td>
                         <td>
-                            <a class="btn btn-warning" href="{% url 'item:atualizar' pk=item.pk %}">
+                            <a class="btn btn-warning" href="{% url 'item:atualizar_item' pk=item.pk %}">
                                 <i class="bi bi-pencil-fill" ></i> Editar</button>
                             </a>
-                            <a class="btn btn-danger" href="{% url 'item:deletar ' pk=item.pk %}">
+                            <a class="btn btn-danger" href="">
                                 <i class="bi bi-trash-fill"></i> Deletar</button>
                             </a>
                         </td>

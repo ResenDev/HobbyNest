@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse,HttpResponseRedirect
 from .models import Usuario
 
 
@@ -40,6 +40,7 @@ def logar(request):
 
         if usuario:  # caso seja válido
             login(request, usuario)
+            return HttpResponseRedirect('itens/meus_itens/')
             # enviar pra os itens
         else:
             return HttpResponse('Dados inválidos!')

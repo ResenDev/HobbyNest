@@ -7,5 +7,6 @@
   },
   "emmet.includeLanguages": {
     "django-html": "html"
-  }
+  },
+  "editor.mouseWheelScrollSensitivity": 0.1
 }

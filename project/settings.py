@@ -126,5 +126,6 @@ AUTH_USER_MODEL = 'user.Usuario'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-LOGIN_REDIRECT_URL = 'meus_itens'
+LOGIN_REDIRECT_URL = 'itens:meus_itens'
 LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'user:login'
