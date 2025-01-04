@@ -15,12 +15,16 @@
                 <!--Add item inicio--> 
                 <div class="container-add d-flex justify-content-center align-items-center">
                     <a 
-                    href=""
+                    href="#"
                     class="btn btn-primary" 
                     data-bs-toggle="modal" 
                     data-bs-target="#addItem"
+                    hx-get="{% url 'item:cadastrar_item' %}"
+                    hx-target="#addContent"
+                    hx-swap="innerHTML"
                     >
-                        <i class="bi bi-plus-circle"></i> Adicionar item
+                        <i class="bi bi-plus-circle"></i> 
+                        Adicionar item
                     </a>
                 </div>   
             </div>
@@ -32,7 +36,6 @@
                 <table class="table table-striped w-100 ">
                     <thead>
                         <tr>
-                                
                             <th scope="col">Título</th>
                             <th scope="col">Categoria</th>
                             <th scope="col">Marca</th>
@@ -44,7 +47,6 @@
                     <tbody class="table-group-divider">
                         {% for item in itens %}
                         <tr>
-                            
                             <td>{{  item.titulo  }}</td>
                             <td>{{ item.categoria  }}</td>
                             <td>{{ item.marca  }}</td>
@@ -64,11 +66,13 @@
                 </table>
             </div>
             {% else %}
-            <p>Você não tem itens cadastrados!</p>
+
+            <p class="text-center">Você ainda não possui itens cadastrados!</p>
         </main>
         {% endif %}
         {% include "./cadastro_item.html" %}
         {% endblock content %}
+        
         <!--Tabela final-->
         {% block style %} 
             <style>

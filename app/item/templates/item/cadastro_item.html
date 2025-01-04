@@ -1,6 +1,17 @@
 {% extends "global/base_modal.html" %}
-
+{% load crispy_forms_tags %}
+{% block title %}Cadastro de Item{% endblock title %}
 {% block content %}
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus accusantium officiis nisi fuga facere magnam aspernatur quaerat dicta, modi illum dolorem ipsa officia impedit voluptatem delectus animi! At, tenetur sit.</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
+</form>
+    
 {% endblock content %}
 {% block cta %}Cadastrar{% endblock cta %}
+<style>
+    #addContent {
+        display: block;
+    }
+
+</style>

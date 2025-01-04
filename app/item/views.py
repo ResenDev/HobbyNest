@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from .models import Item
+from .forms import ItemForm
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -27,12 +28,11 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'item/cadastro_item.html'
     model = Item
-    fields = ['id', 'titulo', 'categoria',
-              'marca', 'descricao_item', 'ano_aquisicao']
+    form_class = ItemForm
+    template_name = 'item/cadastro_item.html'
     success_url = reverse_lazy('item:meus_itens')
-
+    
 
 class ItemDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'item/deletar_item.html'

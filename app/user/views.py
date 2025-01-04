@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.http.response import HttpResponse,HttpResponseRedirect
+from django.contrib import messages
 from .models import Usuario
 
-
+@login_required
 def cadastrar(request):
     if request.method == "GET":
         return render(
@@ -23,7 +25,7 @@ def cadastrar(request):
                                          email=email, username=username, password=senha_hash
                                          )
         usuario.save()
-        return HttpResponse('Criado com sucesso!')
+        return messages.success('Criado com sucesso!')
 
 
 def logar(request):
