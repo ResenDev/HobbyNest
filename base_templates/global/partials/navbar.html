@@ -1,24 +1,58 @@
 {% load static %}
 <header>
-    <link rel="stylesheet" href="{% static "global/css/navbar.css" %}">
-    <nav class="navbar navbar-expand-lg fixed-top bg-dark border-bottom border-body"data-bs-theme="dark">
-     <a href="#" class="navbar-brand">
-        HobbyNest
-     </a>
-     <form class="d-flex mx-auto"style="width: 50%;" role="search">
-         <input class="form-control me-2" type="search" placeholder="Qual item você está procurando?" aria-label="Search">
-         <button class="btn btn-outline-warning" type="submit"><a href="#">
-             <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
-         </a></button>
-       </form>
-       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-         <li class="nav-item">
-             <a class="nav-link" data-bs-toggle="tooltip" title="Entrar/Cadastrar" href="#">
-                 <i class="fa-solid fa-user fa-lg" style="color: #ffffff;"></i>
-                 </a>
-           </li>
-     </ul>
-    </nav> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg " >
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              Hobbynest
+            </a>
+        </div>    
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
+                    {{request.user}}
+                </a>
+                <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'user:logout' %}"><i class="bi bi-door-closed-fill"></i> Sair</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+                    
+    </nav>
+    
 </header>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+    .container-fluid a{
+        font-family: "Pixelify Sans", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size:30px;
+        color:#fff
+    }
+    .navbar{
+        background:#023E7D;
+    }
+    .collapse{
+        margin:0 30px;
+        
+    }
+    .nav-link{
+        color: #fff;
+    }
+    .collapse h5{
+        color:#fff
+    }
+    .collapse a{
+        padding-right:10px;
+    }
+    li i{
+        margin-right:10px;
+    }
+    .navbar-brand{
+        margin: 0 30px;
+    }
+</style>

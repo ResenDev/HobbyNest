@@ -1,70 +1,132 @@
-{% load crispy_forms_tags %}
-{% include "global/partials/head.html" %}
-<body>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-        <!--Barra de pesquisa inicio-->
-        <div class="container-header">
-            <h1 class="h2 text-center">Minha Coleção</h1>
-            <div class="search-container w-25">
-                <form class="d-flex  " role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
+{% extends "global/base.html" %}
+    {% block content %}
+        <main>
+            <!--Barra de pesquisa inicio-->
+            <div class="container-header mt-3">
+                <h1 class="text-center">Minha Coleção</h1>
+                <div class="d-flex justify-content-center align-items-center">
+                    <form class="d-flex m-5 bg-white  " role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+                    </form>
+                </div>
+                <!--Barra de pesquisa final-->
+                
+                <!--Add item inicio--> 
+                <div class="container-add d-flex justify-content-center align-items-center">
+                    <a 
+                    href=""
+                    class="btn btn-primary" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#addItem"
+                    >
+                        <i class="bi bi-plus-circle"></i> Adicionar item
+                    </a>
+                </div>   
             </div>
-            <!--Barra de pesquisa final-->
-
-            <!--Add item inicio-->    
-            <a href="{% url 'item:cadastrar_item' %}">
-                <button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Adicionar item</button>
-            </a>
-        </div>
-        <!--Add item final-->    
-        <canvas class="my-4 w-100" id="myChart" width="900" height="20"></canvas>
-        <!--Tabela inicio-->
-        {% if itens %}
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Título</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Adquirido em</th>
-                        <th scope="col">Opções</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    {% for item in itens %}
-                    <tr>
-                        <th scope="row">{{item.pk}}</th>
-                        <td>{{  item.titulo  }}</td>
-                        <td>{{ item.categoria  }}</td>
-                        <td>{{ item.marca  }}</td>
-                        <td>{{ item.descricao_item  }}</td>
-                        <td>{{ item.ano_aquisicao }}</td>
-                        <td>
-                            <a class="btn btn-warning" href="{% url 'item:atualizar_item' pk=item.pk %}">
-                                <i class="bi bi-pencil-fill" ></i> Editar</button>
-                            </a>
-                            <a class="btn btn-danger" href="">
-                                <i class="bi bi-trash-fill"></i> Deletar</button>
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {% else %}
+            <!--Add item final-->    
+            <canvas class="my-4 w-100" id="myChart" width="900" height="20"></canvas>
+            <!--Tabela inicio-->
+            {% if itens %}
+            <div class="table-responsive">
+                <table class="table table-striped w-100 ">
+                    <thead>
+                        <tr>
+                                
+                            <th scope="col">Título</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Adquirido em</th>
+                            <th scope="col">Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for item in itens %}
+                        <tr>
+                            
+                            <td>{{  item.titulo  }}</td>
+                            <td>{{ item.categoria  }}</td>
+                            <td>{{ item.marca  }}</td>
+                            <td>{{ item.descricao_item  }}</td>
+                            <td>{{ item.ano_aquisicao }}</td>
+                            <td>
+                                <a class="btn btn-warning" id="editar-btn" href="{% url 'item:atualizar_item' pk=item.pk %}">
+                                    <i class="bi bi-pencil-fill" id="editar-icon" ></i></button>
+                                </a>
+                                <a class="btn btn-danger" id="deletar-btn" href="">
+                                    <i class="bi bi-trash-fill"id="deletar-icon"></i></button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
             <p>Você não tem itens cadastrados!</p>
+        </main>
         {% endif %}
-        
-    <!--Tabela final-->
-    
-</main>
+        {% include "./cadastro_item.html" %}
+        {% endblock content %}
+        <!--Tabela final-->
+        {% block style %} 
+            <style>
+                
+                *, *::before, *::after {
+                  box-sizing: border-box;
+                }
+                
+                * {
+                  margin: 0;
+                }
+                
+                body {
+                  line-height: 1.5;
+                  -webkit-font-smoothing: antialiased;
+                }
+                
+                img, picture, video, canvas, svg {
+                  display: block;
+                  max-width: 100%;
+                }
+                
+                input, button, textarea, select {
+                  font: inherit;
+                }
+                
+                p, h1, h2, h3, h4, h5, h6 {
+                  overflow-wrap: break-word;
+                }
+                
+                p {
+                  text-wrap: pretty;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                  text-wrap: balance;
+                }
+                
+                #root, #__next {
+                  isolation: isolate;
+                }
+                main{
+                    font-family: "JetBrains Mono", serif;
 
-</body>
-</html>
+                }
+                thead{
+                    background:#023E7D;
+                    color:#fff;
+                }
+                #editar-btn{
+                    color:#fff;
+                }
+                .table-responsive{
+                    width: 95vw;
+                    margin: 0 30px;
+                }
+                h1{
+                    font-weight:800;
+                }
+            </style>
+        {% endblock style %}
+    

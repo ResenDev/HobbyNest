@@ -48,4 +48,5 @@ def logar(request):
 
 def deslogar(request):
     logout(request)
+    return redirect('user:login')
 # @login_required(login_url='user/auth/login.html')
