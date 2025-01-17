@@ -1,0 +1,33 @@
+<!--Esse template/modal é chamado/renderizado ao apertar o botão de adicionar, ná página de lista.-->
+{% load static %}
+<div class="modal-content">
+    <div class="modal-header">
+        <h2>Detalhes do Item </h2>
+   
+    </div>
+    <div class="modal-body">
+        <h4> <strong>Título: </strong>{{item.titulo}}</h4>
+    </br>
+        <p><strong>Categoria: </strong>{{item.categoria}}</p>
+        <p><strong>Marca: </strong>{{item.marca|upper}}</p>
+        <p><strong>Descrição: </strong>{{item.descricao_item}}</p>
+        <p><strong>Adquirido em (ano): </strong>{{item.ano_aquisicao}}</p>
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+    </div>     
+        
+</div>
+
+<style>
+    #addContent {
+        display: block;
+    }
+    #modal-header h3{
+        color: #000;
+    }
+    .btn-success{
+        background:#38B000
+    }
+</style>

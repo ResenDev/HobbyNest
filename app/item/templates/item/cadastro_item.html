@@ -1,17 +1,53 @@
-{% extends "global/base_modal.html" %}
-{% load crispy_forms_tags %}
-{% block title %}Cadastro de Item{% endblock title %}
-{% block content %}
-<form method="post">
+<!--Esse template/modal é chamado/renderizado ao apertar o botão de adicionar, ná página de lista.-->
+{% load static %}
+<form  method="post" action="{% url 'item:cadastrar_item' %}" class="modal-content">
     {% csrf_token %}
-    {{ form.as_p}}
+    <div class="modal-header">
+        <h3>Cadastro de Item </h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-floating mb-3">
+            <input type="name" class="form-control" id="floatingInput" placeholder="" name="titulo"  >
+            <label for="floatingInput">Título</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+            <input type="name" class="form-control" id="floatingInput" placeholder="" name="marca" >
+            <label for="floatingInput">Marca</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Descrição do item" id="floatingTextarea2" style="height: 100px" name="descricao_item"></textarea>
+            <label for="floatingTextarea2">Descrição</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+            {{form.categoria}}
+              <label for="floatingSelect">Categoria</label>
+        </div>
+        
+        <div class="form-floating mb-3">    
+            <input type="number" class="form-control" id="floatingInput" placeholder="" name="ano_aquisicao" >
+            <label for="floatingInput">Ano de aquisição</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit"
+         class="btn btn-success"
+         >Cadastrar</button>
+    </div>     
+        
 </form>
-    
-{% endblock content %}
-{% block cta %}Cadastrar{% endblock cta %}
+
 <style>
     #addContent {
         display: block;
     }
-
+    #modal-header h3{
+        color: #000;
+    }
+    .btn-success{
+        background:#38B000
+    }
 </style>

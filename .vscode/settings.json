@@ -7,5 +7,6 @@
   },
   "emmet.includeLanguages": {
     "django-html": "html"
-  }
+  },
+  "pylint.args": ["\"pylint.args\": [\"--disable=C0115\"]"]
 }

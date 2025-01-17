@@ -1,0 +1,29 @@
+<!--Esse template/modal é chamado/renderizado ao apertar o botão de adicionar, ná página de lista.-->
+{% load static %}
+<div >
+    <form method="post" action="{% url 'item:deletar_item' item.pk %}" class="modal-content">
+        {% csrf_token %}
+
+    <div class="modal-header">
+        <h2>Deletar Item </h2>
+    </div>
+    <div class="modal-body">
+        <p> <strong>Tem certeza de que quer deletar o item: </strong>'{{item.titulo}}' ?</p>
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger" >Deletar</button>
+        </div>     
+        
+    </div>
+</form>
+
+<style>
+    #addContent {
+        display: block;
+    }
+    #modal-header h3{
+        color: #000;
+    }
+</style>

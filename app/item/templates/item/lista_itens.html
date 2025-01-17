@@ -1,38 +1,48 @@
 {% extends "global/base.html" %}
+{% load static %}
+
     {% block content %}
         <main>
-            <!--Barra de pesquisa inicio-->
+        <!--Inicio do Titulo e Barra de pesquisa-->
             <div class="container-header mt-3">
-                <h1 class="text-center">Minha Coleção</h1>
+                <h1 class="text-center">MINHA COLEÇÃO</h1>
                 <div class="d-flex justify-content-center align-items-center">
-                    <form class="d-flex m-5 bg-white  " role="search">
+                    <form class="d-flex m-5   " role="search" id="caixa-pesquisa">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
                         <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                     </form>
-                </div>
-                <!--Barra de pesquisa final-->
-                
-                <!--Add item inicio--> 
-                <div class="container-add d-flex justify-content-center align-items-center">
-                    <a 
-                    href="#"
-                    class="btn btn-primary" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#addItem"
-                    hx-get="{% url 'item:cadastrar_item' %}"
-                    hx-target="#addContent"
-                    hx-swap="innerHTML"
-                    >
-                        <i class="bi bi-plus-circle"></i> 
-                        Adicionar item
-                    </a>
-                </div>   
             </div>
+            <!--Fim do Titulo e Barra de pesquisa-->
+                
+            <!--Add item inicio--> 
+            <div class="container-add d-flex justify-content-center align-items-center">
+                <button 
+                type="button"
+                class="btn btn-primary" 
+                data-bs-toggle="modal" 
+                data-bs-target="#modal"
+                hx-get="{% url 'item:cadastrar_item' %}"
+                hx-target="#dialog"
+                >
+                    <i class="bi bi-plus-circle"></i> 
+                    Adicionar item
+                </button>
+            </div>   
             <!--Add item final-->    
+
+            <!--Inicio da Área Modal  -->
+            <div class="modal fade" id="modal"  tabindex="-1"  >
+                <div id="dialog" class="modal-dialog">
+                    <!--Modais serão inseridos aqui pelo htmx-->
+                </div>
+            </div>
+            <!--Fim da Área Modal  -->
+
             <canvas class="my-4 w-100" id="myChart" width="900" height="20"></canvas>
-            <!--Tabela inicio-->
+
+            <!--Começo da Tabela -->
             {% if itens %}
-            <div class="table-responsive">
+            <div class="table-responsive table-bordered">
                 <table class="table table-striped w-100 ">
                     <thead>
                         <tr>
@@ -40,24 +50,43 @@
                             <th scope="col">Categoria</th>
                             <th scope="col">Marca</th>
                             <th scope="col">Descrição</th>
-                            <th scope="col">Adquirido em</th>
+                            <th scope="col">Adquirido em (ano)</th>
                             <th scope="col">Opções</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        {% for item in itens %}
+                        
+                    {% for item in itens %}
                         <tr>
                             <td>{{  item.titulo  }}</td>
                             <td>{{ item.categoria  }}</td>
-                            <td>{{ item.marca  }}</td>
-                            <td>{{ item.descricao_item  }}</td>
+                            <td>{{ item.marca|upper  }}</td>
+                            <td>{{ item.descricao_item|truncatewords:13  }}</td><!--Limitador de palavras-->
                             <td>{{ item.ano_aquisicao }}</td>
                             <td>
-                                <a class="btn btn-warning" id="editar-btn" href="{% url 'item:atualizar_item' pk=item.pk %}">
-                                    <i class="bi bi-pencil-fill" id="editar-icon" ></i></button>
+                                <a class="btn btn-primary"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#modal"
+                                    hx-get="{% url 'item:detalhar_item' pk=item.pk %}"
+                                    hx-target="#dialog"
+                                >
+                                    <i class="bi bi-eye-fill" id="visualizar-icon">   Ver</i> </button>
                                 </a>
-                                <a class="btn btn-danger" id="deletar-btn" href="">
-                                    <i class="bi bi-trash-fill"id="deletar-icon"></i></button>
+                                <a class="btn btn-warning" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#modal"
+                                    hx-get="{% url 'item:atualizar_item' pk=item.pk %}"
+                                    hx-target="#dialog"
+                                >
+                                    <i class="bi bi-pencil-fill" id="editar-icon" >   Editar</i> </button>
+                                </a>
+                                <a class="btn btn-danger"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#modal"
+                                    hx-get="{% url 'item:deletar_item' pk=item.pk %}"
+                                    hx-target="#dialog"
+                                >
+                                    <i class="bi bi-trash-fill"id="deletar-icon">  Deletar</i> </button>
                                 </a>
                             </td>
                         </tr>
@@ -66,70 +95,32 @@
                 </table>
             </div>
             {% else %}
-
-            <p class="text-center">Você ainda não possui itens cadastrados!</p>
-        </main>
+                <p class="text-center">Você ainda não possui itens cadastrados!</p> 
         {% endif %}
-        {% include "./cadastro_item.html" %}
+        </main>
         {% endblock content %}
+        <!--Fim da Tabela -->
         
-        <!--Tabela final-->
         {% block style %} 
             <style>
                 
-                *, *::before, *::after {
-                  box-sizing: border-box;
-                }
-                
-                * {
-                  margin: 0;
-                }
-                
-                body {
-                  line-height: 1.5;
-                  -webkit-font-smoothing: antialiased;
-                }
-                
-                img, picture, video, canvas, svg {
-                  display: block;
-                  max-width: 100%;
-                }
-                
-                input, button, textarea, select {
-                  font: inherit;
-                }
-                
-                p, h1, h2, h3, h4, h5, h6 {
-                  overflow-wrap: break-word;
-                }
-                
-                p {
-                  text-wrap: pretty;
-                }
-                h1, h2, h3, h4, h5, h6 {
-                  text-wrap: balance;
-                }
-                
-                #root, #__next {
-                  isolation: isolate;
-                }
-                main{
-                    font-family: "JetBrains Mono", serif;
-
-                }
                 thead{
                     background:#023E7D;
                     color:#fff;
                 }
-                #editar-btn{
+                #editar-icon{
                     color:#fff;
                 }
                 .table-responsive{
                     width: 95vw;
                     margin: 0 30px;
+                    background:#fff;
                 }
                 h1{
-                    font-weight:800;
+                    font-weight:600;
+                }
+                #caixa-pesquisa{
+                    
                 }
             </style>
         {% endblock style %}

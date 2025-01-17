@@ -1,0 +1,55 @@
+<!--Esse template/modal é chamado/renderizado ao apertar o botão de adicionar, ná página de lista.-->
+{% load static %}
+<form method="post"  action="{% url 'item:atualizar_item' item.pk %}" class="modal-content">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h3>Editar Item </h3>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Título</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{item.titulo}}" name="titulo" >
+          </div>
+        
+        <div class="mb-3">
+            <label for="exampleFormControlInput1">Marca</label>
+            <input type="name" value="{{item.marca}}" class="form-control" name="marca">
+        </div>
+        
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1">Descrição</label>
+            <textarea type="text-area" class="form-control" style="height: 100px" name="descricao_item" >{{item.descricao_item}}</textarea>
+        </div>
+        
+        <div class="mb-3">
+            <label for="floatingSelect">Categoria</label>
+            {{form.categoria}}
+        </div>
+        
+        <div class="mb-3">
+            <label for="exampleFormControlInput1">Ano de aquisição</label>
+            <input type="number" class="form-control" value="{{item.ano_aquisicao}}" name="ano_aquisicao">
+        </div>
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success">Atualizar</button>
+    </div>     
+        
+</form>
+
+<style>
+    #addContent {
+        display: block;
+    }
+    #modal-header h3{
+        color: #000;
+    }
+    .btn-success{
+        background:#38B000
+    }
+    input{
+        
+    }
+</style>

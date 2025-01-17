@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
@@ -14,7 +13,7 @@ class Item(models.Model):
         ACTION_FIGURE = 'Action Figure'
 
     user_FK = models.ForeignKey(
-        settings.AUTH_USER_MODEL,#  referencia ao  modelo definido no settings.py (Usuario)
+        settings.AUTH_USER_MODEL,# referencia ao  modelo definido no settings.py (Usuario)
         on_delete=models.CASCADE,
         related_name='itens' # permite que eu busque os itens pelo user_FK ex: user_FK.itens.all()
     )
@@ -37,16 +36,15 @@ class Item(models.Model):
         blank=False,
     )
     ano_aquisicao = models.IntegerField(
-        validators=[
-            MinValueValidator(1950),  # ano mínimo
-            MaxValueValidator(timezone.now().year)  # ano atual é o limite
-        ],
         blank=False,
         help_text="Informe o ano da aquisição do item (ex.: 2018)"
     )
-    data_criacao = models.DateTimeField(
-        default=timezone.now
+    created_at = models.DateTimeField(
+        auto_now_add = True,
     )
-    
+    updated_at = models.DateTimeField( #muda sempre q o obj for alterado
+        auto_now=True
+    )
+
     def __str__(self):
         return self.titulo
