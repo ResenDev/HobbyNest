@@ -2,15 +2,26 @@
 {% load static %}
 <body>
   <div class="container-form">
-    <h3 id='titulo'>LOGIN</h3>
+    <div class="header-form">
+      {% if messages %}
+        {% for mensagem in messages %}
+            <div class="alert alert-danger" role="alert">
+              {{ mensagem }}
+            </div>
+        {% endfor %}
+      {% endif %}
+      <div class="foto"><img src="{% static "global/media/user_login5.png" %}" alt="" style="width:25%"></div>
+      <h3 id='titulo'>LOGIN</h3>
+    </div>
     <div class="formulario">
-      <form action="{% url 'user:login' %}" method="post">{% csrf_token %}
+      <form action="{% url 'user:login' %}" method="post">
+        {% csrf_token %}
         <div class="form-floating mb-3">
-          <input type="name" class="form-control" id="floatingInput" placeholder="Usuário" name="username">
+          <input type="name" class="form-control" id="floatingInput" placeholder="Usuário" name="username" required="True">
           <label for="floatingInput">Usuário</label>
-        </div>
+         </div>
         <div class="form-floating mb-5">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"  name="password">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"  name="password" required="True">
           <label for="floatingPassword">Senha</label>
         </div>
         <div class="text-center">
@@ -41,16 +52,18 @@
       flex-direction: column; 
       justify-content: center; 
       align-items: center;
-      background:#023E7D;
-      width: 800px;
-      height: 470px;
-      border-radius:30px;
-      
+      background: rgba(255, 255, 255, 0.1); /* Fundo transparente */
+      backdrop-filter: blur(3px);
+      height: 570px;
+      border-radius:10px;
+      border:1px solid #fff;
     } 
+  
     .formulario{
-      width:630px ;
+      width:430px;
 
     }
+    
     #titulo{
       text-align: center;
       color:#fff;
@@ -58,13 +71,15 @@
       font-weight:800;
     }
     body {
-      font-family: "JetBrains Mono", serif;
+      font-family: "Poppins", serif;
       display: flex;
       justify-content: center; /*  horizontalmente */
       align-items: center; /* verticalmente */
       min-height: 100vh; 
       margin: 0;  
-      background:#c1c1c1;
+      background: url("{% static "global/media/background-login.jpg" %}") ;
+      background-repeat: no-repeat;
+      background-size:cover;
     }
     .btn-success{
       background:#38B000
@@ -80,15 +95,34 @@
       flex-direction: column;
       justify-content: center; 
       align-items: center;
-      margin:0 40px;
       background:#0466C8;
       width: 200px;
       height: 280px;
       border-radius: 5px;
-      color:#fff
+      color:#fff;
+      position: fixed; 
+      right: 20px;
     }
-    img{
+    .cred-titulo img{
       width: 30px;
+    }
+    .foto{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom:20px
+    }
+    *{
+      list-style:none;
+    }
+    .alert{
+      width: 70%;
+      text-align: center;
+    }
+    .header-form {
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
     }
   </style>
 </body>

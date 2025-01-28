@@ -7,13 +7,18 @@
             <div class="container-header mt-3">
                 <h1 class="text-center">MINHA COLEÇÃO</h1>
                 <div class="d-flex justify-content-center align-items-center">
-                    <form class="d-flex m-5   " role="search" id="caixa-pesquisa">
+                    <form class="d-flex m-4   " role="search" id="caixa-pesquisa">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
                         <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                     </form>
             </div>
+            
             <!--Fim do Titulo e Barra de pesquisa-->
-                
+                {% if itens %}
+                    <div class="cont-itens text-center">
+                        <p>Total de itens: {{ paginator.count }} </p>  <!--soma todos os registros de todas páginas-->
+                    </div>
+                {% endif %}
             <!--Add item inicio--> 
             <div class="container-add d-flex justify-content-center align-items-center">
                 <button 
@@ -23,22 +28,43 @@
                 data-bs-target="#modal"
                 hx-get="{% url 'item:cadastrar_item' %}"
                 hx-target="#dialog"
+                
                 >
                     <i class="bi bi-plus-circle"></i> 
                     Adicionar item
                 </button>
-            </div>   
+                <div class="dropdown" id="export-container">
+                    <button type="button" class="btn btn-success dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Salvar como
+                    </button>
+                    <ul class="dropdown-menu" id="drop-menu-export">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-csv"> CSV</i></a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-pdf"> PDF</i></a></li>
+                      </ul>
+                </div>   
+            </div>
             <!--Add item final-->    
 
             <!--Inicio da Área Modal  -->
+            
             <div class="modal fade" id="modal"  tabindex="-1"  >
                 <div id="dialog" class="modal-dialog">
                     <!--Modais serão inseridos aqui pelo htmx-->
                 </div>
             </div>
             <!--Fim da Área Modal  -->
-
-            <canvas class="my-4 w-100" id="myChart" width="900" height="20"></canvas>
+            {% if messages %}
+            {% for mensagem in messages %}
+                {% if mensagem %}
+                
+                    <div class="alert alert-success" role="alert">
+                        {{ mensagem }}
+                    </div>        
+                
+                {% endif %}
+            {% endfor %}
+          {% endif %}
+            <canvas class="my-2 w-100" id="myChart" width="900" height="20"></canvas>
 
             <!--Começo da Tabela -->
             {% if itens %}
@@ -58,10 +84,10 @@
                         
                     {% for item in itens %}
                         <tr>
-                            <td>{{  item.titulo  }}</td>
+                            <td>{{  item.titulo|truncatechars:25  }}</td>
                             <td>{{ item.categoria  }}</td>
-                            <td>{{ item.marca|upper  }}</td>
-                            <td>{{ item.descricao_item|truncatewords:13  }}</td><!--Limitador de palavras-->
+                            <td>{{ item.marca|upper|truncatechars:15  }}</td>
+                            <td>{{ item.descricao_item|truncatechars:35  }}</td><!--Limitador de caracteres-->
                             <td>{{ item.ano_aquisicao }}</td>
                             <td>
                                 <a class="btn btn-primary"
@@ -94,10 +120,13 @@
                     </tbody>
                 </table>
             </div>
+        {% include "global/partials/pagination.html" %}
+            
             {% else %}
                 <p class="text-center">Você ainda não possui itens cadastrados!</p> 
         {% endif %}
         </main>
+        
         {% endblock content %}
         <!--Fim da Tabela -->
         
@@ -112,16 +141,33 @@
                     color:#fff;
                 }
                 .table-responsive{
-                    width: 95vw;
                     margin: 0 30px;
                     background:#fff;
                 }
                 h1{
                     font-weight:600;
                 }
-                #caixa-pesquisa{
-                    
+                #caixa-pesquisa{ 
                 }
+                #export-container{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center; 
+                    align-items: center;
+                    position: absolute; 
+                    right: 80px;
+                }
+                .btn-success{
+                    background:#38B000
+                  }
+                .alert{
+                    margin-top:20px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center; 
+                    align-items: center;
+                    text-align: center;
+                  }
             </style>
         {% endblock style %}
     

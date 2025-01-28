@@ -1,45 +1,76 @@
-<!--Esse template/modal é chamado/renderizado ao apertar o botão de adicionar, ná página de lista.-->
-{% load static %}
-<form  method="post" action="{% url 'item:cadastrar_item' %}" class="modal-content">
+<form method="post"
+ action="{% url 'item:cadastrar_item' %}" 
+ class="modal-content"
+ hx-post="{% url 'item:cadastrar_item' %}" 
+ hx-target="#dialog" 
+ hx-swap="innerHTML"
+ >
     {% csrf_token %}
     <div class="modal-header">
-        <h3>Cadastro de Item </h3>
+        <h3>Cadastro de Item</h3>
     </div>
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        <p>Por favor, corrija o(s) erro(s) abaixo:</p>
+    </div>
+    {% endif %}
     <div class="modal-body">
+        
         <div class="form-floating mb-3">
-            <input type="name" class="form-control" id="floatingInput" placeholder="" name="titulo"  >
+            {{ form.titulo }}
             <label for="floatingInput">Título</label>
+            {% if form.titulo.errors %}
+                <div class="text-danger">
+                {% for error in form.titulo.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
         </div>
-        
         <div class="form-floating mb-3">
-            <input type="name" class="form-control" id="floatingInput" placeholder="" name="marca" >
+            {{ form.marca }}
             <label for="floatingInput">Marca</label>
+            {% if form.marca.errors %}
+                <div class="text-danger">
+            {% for error in form.marca.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+                </div>
+    {% endif %}
         </div>
-        
         <div class="form-floating mb-3">
-            <textarea class="form-control" placeholder="Descrição do item" id="floatingTextarea2" style="height: 100px" name="descricao_item"></textarea>
-            <label for="floatingTextarea2">Descrição</label>
+            {{ form.descricao_item }}
+            <label for="floatingTextarea2">Descrição do item</label>
+            {% if form.descricao_item.errors %}
+                <div class="text-danger">
+            {% for error in form.descricao_item.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+                </div>
+    {% endif %}
         </div>
-        
         <div class="form-floating mb-3">
-            {{form.categoria}}
-              <label for="floatingSelect">Categoria</label>
+            {{ form.categoria }}
+            <label for="floatingSelect">Categoria</label>
         </div>
-        
-        <div class="form-floating mb-3">    
-            <input type="number" class="form-control" id="floatingInput" placeholder="" name="ano_aquisicao" >
+        <div class="form-floating mb-3">
+            {{ form.ano_aquisicao }}
             <label for="floatingInput">Ano de aquisição</label>
+            {% if form.ano_aquisicao.errors %}
+                <div class="text-danger">
+            {% for error in form.ano_aquisicao.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+                </div>
+    {% endif %}
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit"
-         class="btn btn-success"
-         >Cadastrar</button>
-    </div>     
-        
+        <button type="submit" class="btn btn-success">Cadastrar</button>
+    </div>
+   
 </form>
-
 <style>
     #addContent {
         display: block;
@@ -48,6 +79,9 @@
         color: #000;
     }
     .btn-success{
-        background:#38B000
+        background:#38B000;
+    }
+    #floatingTextarea2{
+        height: 100px;
     }
 </style>

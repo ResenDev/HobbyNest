@@ -8,48 +8,26 @@
         {% include "global/partials/footer.html" %}
 </body>
 <style>
-    *, *::before, *::after {
-        box-sizing: border-box;
-      }
-      
       * {
         margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      
-      body {
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-        background:#eeee;  
-      }
-      
+      html, body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
       img, picture, video, canvas, svg {
         display: block;
         max-width: 100%;
       }
-      
-      input, button, textarea, select {
-        font: inherit;
-      }
-      
-      p, h1, h2, h3, h4, h5, h6 {
-        overflow-wrap: break-word;
-      }
-      
-      p {
-        text-wrap: pretty;
-      }
-      h1, h2, h3, h4, h5, h6 {
-        text-wrap: balance;
-      }
-      
-      
-      #root, #__next {
-        isolation: isolate;
-      }
       main{
+        flex: 1;   
         font-family: "Poppins", serif;
-        height:  100vh; 
-                       
+        background:#eeee;
+        padding-bottom:50px;          
       }
        
     ::-webkit-scrollbar {

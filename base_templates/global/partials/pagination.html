@@ -1,0 +1,32 @@
+<nav class="paginacao">
+    <ul class="pagination">
+    {% if page_obj.has_previous  %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#"><</a></li>
+    {% endif %}                  
+      {% for page in paginator.page_range  %} <!--paginator é uma instância da classe Paginator-->
+        
+        {% if page_obj.number == page %}<!--Se a página mostrada for igual a atual do loop-->
+        <li class="page-item  active"><a class="page-link" href="#">{{page}} </a></li><!--Ela será mostrada diferente (active)-->
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}} </a></li>
+        {% endif %}
+      {% endfor %}
+      
+      {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">></a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">></a></li>
+    {% endif %}
+    </ul>
+  </nav>
+
+  <style>
+    .paginacao{
+        margin-top:30px;
+        display: flex;
+        justify-content:center;
+        align-itens:center;
+    }
+  </style>

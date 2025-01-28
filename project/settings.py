@@ -27,8 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app.user',
     'app.item',
-    "crispy_forms",
-    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -116,16 +114,15 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# habilitar quando tiver o sistema de autenticação de usuario pronto
+# Django envia o cookie da sessão por https
 SESSION_COOKIE_SECURE = True
+# Não deixa que o js do cliente capture o cookie da sessão
 SESSION_COOKIE_HTTPONLY = True
+# Encerra a sessão quando o navegador é fechado
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 AUTH_USER_MODEL = 'user.Usuario'
 
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
-CRISPY_TEMPLATE_PACK = "bootstrap5"
 LOGIN_REDIRECT_URL = 'itens:meus_itens'
 LOGOUT_REDIRECT_URL = 'user:login'
 LOGIN_URL = 'user:login'

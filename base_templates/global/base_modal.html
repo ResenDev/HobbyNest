@@ -1,0 +1,30 @@
+<!--Esse template/modal é chamado/renderizado ao apertar o botão de adicionar, ná página de lista.-->
+{% load static %}
+{% block form_head %}
+<div class="modal-header">
+    {% block header %} <h3></h3> {% endblock header %}
+</div>
+<div class="modal-body">
+    {% block content %}{% endblock content %}
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+    <button type="submit"
+    class="btn btn-success"
+    >{% block cta %}{% endblock cta %}</button>
+</div>     
+
+{% endblock form_head %}    
+
+
+<style>
+    #addContent {
+        display: block;
+    }
+    #modal-header h3{
+        color: #000;
+    }
+    .btn-success{
+        background:#38B000
+    }
+</style>

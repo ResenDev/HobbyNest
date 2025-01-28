@@ -1,6 +1,12 @@
 <!--Esse template/modal é chamado/renderizado ao apertar o botão de adicionar, ná página de lista.-->
 {% load static %}
-<form method="post"  action="{% url 'item:atualizar_item' item.pk %}" class="modal-content">
+<form method="post"  
+action="{% url 'item:atualizar_item' item.pk %}" 
+class="modal-content"
+hx-post="{% url 'item:atualizar_item' item.pk %}" 
+ hx-target="#dialog" 
+ hx-swap="innerHTML"
+>
     {% csrf_token %}
     <div class="modal-header">
         <h3>Editar Item </h3>
@@ -9,16 +15,37 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Título</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" value="{{item.titulo}}" name="titulo" >
-          </div>
+            {% if form.titulo.errors %}
+                <div class="text-danger">
+                {% for error in form.titulo.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
+        </div>
         
         <div class="mb-3">
             <label for="exampleFormControlInput1">Marca</label>
             <input type="name" value="{{item.marca}}" class="form-control" name="marca">
+            {% if form.marca.errors %}
+                <div class="text-danger">
+            {% for error in form.marca.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+                </div>
+    {% endif %}
         </div>
         
         <div class="mb-3">
             <label for="exampleFormControlTextarea1">Descrição</label>
             <textarea type="text-area" class="form-control" style="height: 100px" name="descricao_item" >{{item.descricao_item}}</textarea>
+            {% if form.descricao_item.errors %}
+                <div class="text-danger">
+            {% for error in form.descricao_item.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+                </div>
+    {% endif %}
         </div>
         
         <div class="mb-3">
@@ -29,6 +56,13 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1">Ano de aquisição</label>
             <input type="number" class="form-control" value="{{item.ano_aquisicao}}" name="ano_aquisicao">
+            {% if form.ano_aquisicao.errors %}
+                <div class="text-danger">
+            {% for error in form.ano_aquisicao.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+                </div>
+    {% endif %}
         </div>
     </div>
     

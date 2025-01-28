@@ -18,16 +18,17 @@ class Item(models.Model):
         related_name='itens' # permite que eu busque os itens pelo user_FK ex: user_FK.itens.all()
     )
     titulo = models.CharField(
-        max_length=255,
+        max_length=100,
         blank=False,
     )
     marca = models.CharField(
-        max_length=255,
+        max_length=100,
         blank=False,
     )
     descricao_item = models.TextField(
         blank=True,
-        null= True
+        null= True,
+        max_length=500
     )
     categoria = models.CharField(
         max_length=50,
@@ -37,7 +38,6 @@ class Item(models.Model):
     )
     ano_aquisicao = models.IntegerField(
         blank=False,
-        help_text="Informe o ano da aquisição do item (ex.: 2018)"
     )
     created_at = models.DateTimeField(
         auto_now_add = True,

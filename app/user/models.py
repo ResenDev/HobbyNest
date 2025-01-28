@@ -7,6 +7,14 @@ from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
     # sobrescrever o fato do nome e email virem blank por padrão
-    first_name = models.CharField(max_length=150, blank=False)
-    email = models.EmailField(blank=False, unique=True)
+    first_name = models.CharField(
+        max_length=30,
+        blank=False
+    )
+    email = models.EmailField(
+        null=False,
+        blank=False,
+        unique=True
+    )
+
     
