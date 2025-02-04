@@ -39,12 +39,12 @@ def logar(request):
         password = request.POST.get('password')  # pbkdf2_sha256
 
         usuario = authenticate(username=username, password=password)
-        messages.error(request, "Dados inválidos!")
         if usuario:  # caso seja válido
             login(request, usuario)
             return HttpResponseRedirect('itens/meus_itens/')
             # envia para a lista de itens
         else:
+            messages.error(request, "Dados inválidos!")
             return redirect('user:login')
 
 

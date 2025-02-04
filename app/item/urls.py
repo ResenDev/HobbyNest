@@ -9,4 +9,6 @@ urlpatterns = [
     path('detalhe/<int:pk>/', views.ItemDetailView.as_view(), name='detalhar_item'),
     path('atualizar/<int:pk>/', views.ItemUpdateView.as_view(), name='atualizar_item'),
     path('deletar/<int:pk>/', views.ItemDeleteView.as_view(), name='deletar_item'),
+    path('csv_meus_itens',views.exportar_csv,name='exp_csv'),
+    path('pdf_meus_itens', views.exportar_pdf, name='exp_pdf'),  
 ]

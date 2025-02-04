@@ -8,7 +8,7 @@
                 <h1 class="text-center">MINHA COLEÇÃO</h1>
                 <div class="d-flex justify-content-center align-items-center">
                     <form class="d-flex m-4   " role="search" id="caixa-pesquisa">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="pesquisa">
                         <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                     </form>
             </div>
@@ -21,6 +21,19 @@
                 {% endif %}
             <!--Add item inicio--> 
             <div class="container-add d-flex justify-content-center align-items-center">
+                
+                <div class="dropdown" id="sort-container">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-sort-up"></i> Ordenar por
+                    </button>
+                    <ul class="dropdown-menu" id="drop-menu-export">
+                        <li><a class="dropdown-item" name="m-recente" href="?ordenacao=-updated_at">Mais recentes</a></li>
+                        <li><a class="dropdown-item" name="m-antigos" href="?ordenacao=updated_at">Mais antigos</a></li>
+                        <li><a class="dropdown-item" name="alfa-c" href="?ordenacao=titulo">A-Z</i></a></li>
+                        <li><a class="dropdown-item" name="alfa-d" href="?ordenacao=-titulo">Z-A</a></li>
+                      </ul>
+                </div>  
+                
                 <button 
                 type="button"
                 class="btn btn-primary" 
@@ -35,11 +48,11 @@
                 </button>
                 <div class="dropdown" id="export-container">
                     <button type="button" class="btn btn-success dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Salvar como
+                        <i class="bi bi-file-earmark-arrow-down-fill"></i> Salvar como
                     </button>
                     <ul class="dropdown-menu" id="drop-menu-export">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-filetype-csv"> CSV</i></a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-pdf"> PDF</i></a></li>
+                        <li><a class="dropdown-item" href="{% url 'item:exp_csv' %}"><i class="bi bi-filetype-csv"> CSV</i></a></li>
+                        <li><a class="dropdown-item" href=" {% url "item:exp_pdf" %} "><i class="bi bi-file-earmark-pdf"> PDF</i></a></li>
                       </ul>
                 </div>   
             </div>
@@ -123,7 +136,7 @@
         {% include "global/partials/pagination.html" %}
             
             {% else %}
-                <p class="text-center">Você ainda não possui itens cadastrados!</p> 
+                <p class="text-center" id="no-itens">Nenhum item foi encontrado.</p> 
         {% endif %}
         </main>
         
@@ -155,7 +168,17 @@
                     justify-content: center; 
                     align-items: center;
                     position: absolute; 
-                    right: 80px;
+                    right: 30px;
+                    border:none;
+                }
+                #sort-container{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center; 
+                    align-items: center;
+                    position: absolute; 
+                    left: 30px;
+                    border:none;
                 }
                 .btn-success{
                     background:#38B000
