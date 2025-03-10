@@ -1,16 +1,20 @@
 
 # 🗄 HobbyNest
+
 ![Static Badge](https://img.shields.io/badge/License-Apache%202.0-red)
 
-O **HobbyNest** é uma plataforma web desenvolvida para que os usuários possam gerenciar e explorar seus items pessoais de forma prática e organizada. O sistema permite criar listas personalizadas com itens que já possuem, desejam adquirir ou nos quais já tiveram alguma experiência significativa. Além disso, oferece a possibilidade de compartilhar essas vivências por meio de posts na seção de blog. Os itens são classificados em quatro categorias principais: Livros, Cursos, Jogos e Filmes/Séries, facilitando a organização e a navegação.
+O **HobbyNest** é um sistema web desenvolvido para que os usuários possam gerenciar e explorar seus acervos pessoais de forma prática e organizada. O sistema permite manipular a lista dos itens que já possuem, para um melhor controle. Os itens são classificados em quatro categorias principais: Livros, Cursos, Jogos e Filmes/Séries.
 
 
 ## 🛠️ Stack utilizada
 
-- **Front-end:** Bootstrap e JavaScript.
-- **Back-end:** Python, Django, PostgreSQL e Docker.
+- **Front-end:** Html, Css, Bootstrap e JavaScript.
+- **Back-end:** Python, Django e PostgreSQL.
 
-<div class="icons-container">  
+<div class="icons-container"> 
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="html" width="40" height="40" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="css" width="40" height="40" />                          
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="Javascript" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="40" height="40"/>
@@ -21,31 +25,80 @@ O **HobbyNest** é uma plataforma web desenvolvida para que os usuários possam 
 
 ## ⚙️ Funcionalidades
 
-- *Cadastro e manipulação de itens*: O usuário pode adicionar itens ao seu item pessoal, como livros, cursos, jogos e filmes/séries, preenchendo detalhes como título, categoria, descrição, e data de aquisição ou experiência. É possível também adicionar tags para facilitar a busca e organização.
-- *Seção de blog*: O site permite que os usuários escrevam e compartilhem posts no blog sobre suas experiências com os itens do seu item. 
-- *Busca Avançada*: A plataforma possui um sistema de busca eficiente, permitindo que o usuário encontre rapidamente itens no item por nome, categoria ou tags. 
+- *Autenticação de usuário*: Apenas usuários cadastrados podem acessar o sistema;
+
+- *CRUD de itens*: O usuário pode manipular os itens do seu acervo pessoal;
+
+- *Busca*: A plataforma possui um sistema de busca eficiente, permitindo que o usuário encontre rapidamente itens no acervo por nome;
+
+- *Ordenação*: Ordena por título e por data de atualização;
+
+- *Exportar lista para PDF ou CSV*;
+
+- *Paginação*.
+
+## 📽️ Demonstração
+
+Insira um gif ou um link de alguma demonstração
 
 
+## 💻 Rodando localmente
 
-## 📷 Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-
-## 🐳 Rodando localmente
-
-Clone esse repositório:
+Clone esse repositório
 ```bash
-    git clone https://link-para-o-projeto
+    git clone https://github.com/ResenDev/HobbyNest.git
 ```
 
+Crie o seu ambiente virtual
+```bash
+    python -m venv venv
+```
+Ative seu ambiente virtual
 
+Windows:
+```bash
+    venv\Scripts\activate
+```
+Mac/Linux:
+```bash
+    source venv/bin/activate
+```
+Navegue até a pasta *app*
+```bash
+   cd app 
+```
 
+Atualize o pip e instale as bibliotecas do *requirements.txt*
+```bash
+    pip install --upgrade pip
+    pip install -r requirements.txt
+```
+Retorne à pasta anterior 
+```bash
+    cd ..
+```
+Renomeie o arquivo de variáveis de ambiente *.env-git*
 
-## ⏫ Futuras implementações
+Windows:
+```bash
+    ren .env-git .env
+```
+Mac/Linux:
+```bash
+    mv .env-git .env
+```
+Após isso, mude os valores das variáveis do *.env* para os valores do seu banco de dados no arquivo 
 
-- *Perfil de Usuário*: Cada usuário possuirá um perfil único, onde outros membros poderão visualizar visualizar seu item completo, caso o item seja público, e seus posts do blog.
-- *Modo Escuro*
+Faça as migrações
+```bash
+   python manage.py makemigrations
+   python manage.py migrate 
+```
+Rode o projeto
+```bash
+    python manage.py runserver
+```
+
 
 ## 🤝 Contribuindo
 
@@ -56,7 +109,7 @@ Veja `contribuindo.md` para saber como começar.
 Por favor, siga o `código de conduta` desse projeto.
 
 
-## 🙋🏽‍♂️ Autor
+## 👨🏽‍🎨 Autor
 
 <a><img src="https://avatars.githubusercontent.com/u/82344312?v=4" alt="Rafael Resende" width="280" height="280"/></a>
 

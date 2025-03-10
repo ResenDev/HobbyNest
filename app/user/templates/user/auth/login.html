@@ -5,9 +5,12 @@
     <div class="header-form">
       {% if messages %}
         {% for mensagem in messages %}
-            <div class="alert alert-danger" role="alert">
-              {{ mensagem }}
-            </div>
+          <div class="alert 
+            {% if 'success' in mensagem.tags %}alert-success
+            {% elif 'error' in mensagem.tags %}alert-danger
+            {% endif %}" role="alert">
+            {{ mensagem }}
+          </div>
         {% endfor %}
       {% endif %}
       <div class="foto"><img src="{% static "global/media/user_login5.png" %}" alt="" style="width:25%"></div>

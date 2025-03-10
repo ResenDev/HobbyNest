@@ -6,7 +6,7 @@ app_name = 'user'
 urlpatterns = [
     path('', views.logar, name='login'),
     path('logout/', views.deslogar, name='logout'),
-    path('cadastro/', views.cadastrar, name='cadastro'),
+    path('cadastro/', views.CadastroCreateView.as_view(), name='cadastro'),
 
 
 

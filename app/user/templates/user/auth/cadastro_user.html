@@ -4,22 +4,41 @@
   <div class="container-form">
     <h3 id='titulo'>CADASTRO</h3>
     <div class="formulario">
+      {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+          <p>Por favor, corrija o(s) erro(s) abaixo:</p>
+        </div>
+      {% endif %}
       <form action="{% url 'user:cadastro' %}" method="post">{% csrf_token %}
-        <div class="form-floating mb-5">
+        <div class="form-floating mb-3">
               <input type="name" class="form-control" id="floatingInput" placeholder="Nome" name="first_name">
               <label for="floatingInput">Primeiro nome</label>
         </div>
-        <div class="form-floating mb-5">
+        <div class="form-floating mb-3">
                 <input type="name" class="form-control" id="floatingInput" placeholder="Sobrenome" name="last_name">
                 <label for="floatingInput">Sobrenome</label>
         </div>        
-        <div class="form-floating mb-5"> 
-                <input type="name" class="form-control" id="floatingInput" placeholder="E-mail" name="email">
+        <div class="form-floating mb-3"> 
+                <input type="email" class="form-control" id="floatingInput" placeholder="E-mail" name="email">
                 <label for="floatingInput">E-mail</label>
+                {% if form.email.errors %}
+                <div class="text-danger">
+                {% for error in form.email.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
         </div>
-        <div class="form-floating mb-5"> 
+        <div class="form-floating mb-3"> 
                 <input type="name" class="form-control" id="floatingInput" placeholder="Username" name="username">
                 <label for="floatingInput">Usuário</label>
+                {% if form.username.errors %}
+                <div class="text-danger">
+                {% for error in form.username.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
         </div>
       <div class="form-floating mb-5">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"  name="password">
@@ -39,13 +58,13 @@
       align-items: center;
       background:#023E7D;
       width: 800px;
-      height: 690px;
+      height: 800px;
       border-radius:30px;
       
     } 
     .formulario{
       width:630px ;
-
+       
     }
     #titulo{
       text-align: center;
@@ -54,10 +73,10 @@
       font-weight:800;
     }
     body {
-      font-family: "JetBrains Mono", serif;
+      font-family: "Poppins", serif;
       display: flex;
-      justify-content: center; /*  horizontalmente */
-      align-items: center; /* verticalmente */
+      justify-content: center;  
+      align-items: center;  
       min-height: 100vh; 
       margin: 0; 
       background:#c1c1c1;
@@ -69,6 +88,11 @@
       width:265px;
       font-weight:800;
 
+    }
+    .alert{
+      width: 100%;
+      height:50px;
+      text-align: center;
     }
   </style>
 </body>
