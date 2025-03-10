@@ -19,8 +19,7 @@ O **HobbyNest** é um sistema web desenvolvido para que os usuários possam gere
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="Javascript" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain-wordmark.svg" alt="django" width="40" height="40"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original-wordmark.svg" alt="postgres" width="40" height="40" />   
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40" />                 
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original-wordmark.svg" alt="postgres" width="40" height="40" />                  
 </div>
 
 ## ⚙️ Funcionalidades
@@ -104,9 +103,9 @@ Rode o projeto
 
 Contribuições são sempre bem-vindas!
 
-Veja `contribuindo.md` para saber como começar.
+Veja [contribuindo.md](contribuindo.md) para saber como começar.
 
-Por favor, siga o `código de conduta` desse projeto.
+Por favor, siga o [código de conduta](CODE_OF_CONDUCT.md) desse projeto.
 
 
 ## 👨🏽‍🎨 Autor
