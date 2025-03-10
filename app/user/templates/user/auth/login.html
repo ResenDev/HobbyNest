@@ -23,10 +23,11 @@
           <input type="name" class="form-control" id="floatingInput" placeholder="Usuário" name="username" required="True">
           <label for="floatingInput">Usuário</label>
          </div>
-        <div class="form-floating mb-5">
+        <div class="form-floating mb-3">
           <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"  name="password" required="True">
           <label for="floatingPassword">Senha</label>
         </div>
+        <div class="cad text-center mb-4"><p>Ainda não possui cadastro? <spam><a href="{% url "user:cadastro" %}">Cadastre-se</a></spam></p></div>
         <div class="text-center">
           <input type="submit" value="Entrar" class="btn btn-success btn-lg">
         </div>
@@ -50,6 +51,16 @@
     </div>
   </div>
   <style>
+    .cad{
+      color:#fff;
+      font-size:14px
+    }
+    .cad spam a{
+      text-decoration: underline;
+      color:#fff;
+    }
+
+
     .container-form{
       display: flex;
       flex-direction: column; 

@@ -40,10 +40,11 @@
                 </div>
             {% endif %}
         </div>
-      <div class="form-floating mb-5">
+      <div class="form-floating mb-3">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Senha"  name="password">
         <label for="floatingPassword">Senha</label>
       </div>
+      <div class="log text-center mb-4"><p>Já possui conta? <spam><a href="{% url "user:login" %}">Logar</a></spam></p></div>
       <div class="text-center">
         <input type="submit" value="Cadsatrar" class="btn btn-success btn-lg">
       </div>
@@ -51,6 +52,15 @@
     </div>
   </div>
   <style>
+    .log{
+      color:#fff;
+      font-size:14px
+    }
+    .log spam a{
+      text-decoration: underline;
+      color:#fff;
+    }
+
     .container-form{
       display: flex;
       flex-direction: column; 
@@ -58,7 +68,7 @@
       align-items: center;
       background:#023E7D;
       width: 800px;
-      height: 800px;
+      height: 700px;
       border-radius:30px;
       
     } 
