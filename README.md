@@ -1,7 +1,7 @@
 
 # 🗄 HobbyNest
 
-![Static Badge](https://img.shields.io/badge/License-Apache%202.0-red)
+[![Static Badge](https://img.shields.io/badge/License-Apache%202.0-red)](LICENSE)
 
 O **HobbyNest** é um sistema web desenvolvido para que os usuários possam gerenciar e explorar seus acervos pessoais de forma prática e organizada. O sistema permite manipular a lista dos itens que já possuem, para um melhor controle. Os itens são classificados em quatro categorias principais: Livros, Cursos, Jogos e Filmes/Séries.
 
