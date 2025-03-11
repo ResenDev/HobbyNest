@@ -34,24 +34,26 @@ class ItemListView(LoginRequiredMixin, ListView):
     paginate_by = 10  # limite de itens por página
     context_object_name = 'itens'  # nome da lista de objetos que será passada ao html
     # TODO resolver erro das urls
+
     def get_queryset(self):
         # retorna os itens do usuário logado (que está fazendo o request), ordenado pelo q foi atualizado mais recentemente
         # valor inicial
         qs = Item.objects.order_by(
             '-updated_at').filter(user_FK_id=self.request.user)
-        
+
         # captura o elemento com name = pesquisa no html
         search = self.request.GET.get('pesquisa')
         if search:
             qs = qs.filter(titulo__icontains=search)
 
-        # captura o valor da variavel que influenciará a ordenação    
+        # captura o valor da variavel que influenciará a ordenação
         ordem = self.request.GET.get("ordenacao")
         if ordem:
             # ordena de acordo com o valor da variável ordenacao
             qs = qs.order_by(ordem)
-        
+
         return qs
+
 
 class ItemDetailView(LoginRequiredMixin, DetailView):
     model = Item
@@ -71,7 +73,7 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "Item criado com sucesso!")
         self.object = form.save()  # salva o objeto no banco
         # atualiza a página usando js
-        return HttpResponse('<script>window.location.reload();</>')
+        return HttpResponse('<script>window.location.reload();</script>')
  # salva e redireciona para a success_url
 
     def form_invalid(self, form):
