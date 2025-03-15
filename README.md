@@ -41,6 +41,10 @@ O **HobbyNest** é um sistema web desenvolvido para que os usuários possam gere
 Insira um gif ou um link de alguma demonstração
 
 
+
+https://github.com/user-attachments/assets/2223abd8-24e1-44b3-acb1-69b3697a16fa
+
+
 ## 💻 Rodando localmente
 
 Clone esse repositório
